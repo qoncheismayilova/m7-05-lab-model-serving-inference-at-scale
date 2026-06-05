@@ -1,0 +1,45 @@
+service: vision-moderation
+
+slos:
+
+* name: availability
+  sli: >
+  Percentage of requests returning HTTP 2xx or 3xx responses and completing inference successfully.
+  objective: 0.999
+  window: 30d
+  burn_rate_alerts:
+
+  * severity: page
+    burn_rate: 14.4
+    window: 1h
+  * severity: ticket
+    burn_rate: 6
+    window: 6h
+
+* name: latency_p95
+  sli: >
+  Percentage of requests with end-to-end latency less than or equal to 250 ms.
+  objective: 0.95
+  window: 30d
+  burn_rate_alerts:
+
+  * severity: page
+    burn_rate: 10
+    window: 1h
+  * severity: ticket
+    burn_rate: 5
+    window: 6h
+
+* name: latency_p99
+  sli: >
+  Percentage of requests with end-to-end latency less than or equal to 500 ms.
+  objective: 0.99
+  window: 30d
+  burn_rate_alerts:
+
+  * severity: page
+    burn_rate: 14
+    window: 1h
+  * severity: ticket
+    burn_rate: 6
+    window: 6h
